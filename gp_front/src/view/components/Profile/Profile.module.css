@@ -1,0 +1,66 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+}
+
+.signInStaff {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+}
+
+.shortcutMenu {
+    padding: 10px 0 10px 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 0 #dfdfdf;
+
+    position: absolute;
+    top: 42px;
+}
+
+.imgBox {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #dfdfdf;
+    border-radius: 100%;
+    /*background-color: red;*/
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.usernameBox {
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.imgBox > img {
+    width: 100%;
+}
+
+.defaultImg {
+    font-size: 28px;
+    color: #afafaf;
+}
+
+.setting,
+.signOut {
+    font-size: 16px;
+    word-break: keep-all;
+    height: 38px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.setting:hover,
+.signOut:hover {
+    background-color: #efefef;
+}

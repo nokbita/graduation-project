@@ -1,0 +1,50 @@
+.backdrop {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.signInComp {
+    padding: 20px;
+}
+
+.titleBox,
+.inputBox,
+.tipBox,
+.btnBox,
+.agreementsBox {
+    margin-bottom: 20px;
+}
+
+.titleBox,
+.btnBox,
+.footerBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.tip {
+    color: #ff0000;
+}
+
+.agreementsBox {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 2px;
+
+    outline: none;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+}

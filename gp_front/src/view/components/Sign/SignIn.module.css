@@ -1,0 +1,33 @@
+.backdrop {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.signInComp {
+    padding: 20px;
+}
+
+.titleBox,
+.inputBox,
+.tipBox,
+.btnBox {
+    margin-bottom: 20px;
+}
+
+.titleBox,
+.btnBox,
+.footerBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.tip {
+    color: #ff0000;
+}

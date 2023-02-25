@@ -1,0 +1,6 @@
+.backdrop {
+    border: 1px solid #dfdfdf;
+    box-shadow: 5px 5px 5px 0 #dfdfdf;
+    border-radius: 10px;
+    background-color: #ffffff;
+}

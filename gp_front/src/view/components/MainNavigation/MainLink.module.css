@@ -1,0 +1,11 @@
+.mainLink {
+    width: 200px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainLink:hover {
+    background-color: #efefef;
+}
