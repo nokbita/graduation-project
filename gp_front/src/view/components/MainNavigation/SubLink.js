@@ -4,13 +4,13 @@ import Css from "./SubLink.module.css";
 const SubLink = (props) => {
     return (
         <div className={Css.subLink}>
-            <span>{props.linkName}</span>
+            <span className={Css.linkName}>{props.linkName}</span>
         </div>
     );
 };
 
 SubLink.defaultProps = {
-    linkName: "员工管理"
+    linkName: "子链接xxx"
 }
 
 export default SubLink;

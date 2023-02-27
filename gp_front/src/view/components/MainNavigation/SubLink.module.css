@@ -1,11 +1,21 @@
 .subLink {
     width: 200px;
     height: 38px;
+    cursor: pointer;
+
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .subLink:hover {
     background-color: #efefef;
 }
+
+.linkName {
+    font-size: 16px;
+    padding: 0 10px 0 60px;
+    user-select: none;
+}
+
+

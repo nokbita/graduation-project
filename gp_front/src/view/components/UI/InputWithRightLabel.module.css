@@ -1,0 +1,27 @@
+.inputWithRightLabel {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #169BD5;
+}
+
+.label {
+    font-size: 16px;
+    margin-right: 10px;
+    word-break: keep-all;
+}
+
+.input {
+    font-size: 16px;
+    outline: none;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    width: 200px;
+    height: 38px;
+    padding: 0 10px;
+}
+
+/* 使用webkit内核的浏览器 */
+.input::placeholder {
+    color: #bfbfbf;
+}

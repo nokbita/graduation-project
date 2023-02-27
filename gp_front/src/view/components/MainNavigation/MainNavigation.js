@@ -1,23 +1,18 @@
 import React from 'react';
 import Css from "./MainNavigation.module.css";
-import MainLink from "./MainLink";
-import SubLink from "./SubLink";
-import {faUser} from "@fortawesome/free-solid-svg-icons";
+import BlockNav from "./BlockNav";
+import {useNavigate} from "react-router-dom";
+import MainNavigationService from "../../../service/MainNavigationService";
 
 const MainNavigation = () => {
+
+    const navigate = useNavigate();
+    const blockNavProps = MainNavigationService.blockNavProps(navigate);
+
     return (
         <div className={Css.mainNavigation}>
-            <ul>
-                <li>
-                    <MainLink fontIcon={faUser} />
-                </li>
-                <li>
-                    <SubLink />
-                </li>
-                <li>
-                    <SubLink  />
-                </li>
-            </ul>
+           <BlockNav blockNavProps={blockNavProps} />
+           {/*<BlockNav  />*/}
         </div>
     );
 };

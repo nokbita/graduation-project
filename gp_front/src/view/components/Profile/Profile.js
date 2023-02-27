@@ -14,11 +14,7 @@ const Profile = (props) => {
 
     const showMenuHandler = ProfileHandler.showShortcutMenuHandler(setShow);
     const hideMenuHandler = ProfileHandler.hideShortcutMenuHandler(setShow);
-
     const signOutHandler = ProfileHandler.signOutHandler(navigate);
-
-
-
 
 
     return (
