@@ -15,6 +15,7 @@ const Profile = (props) => {
     const showMenuHandler = ProfileHandler.showShortcutMenuHandler(setShow);
     const hideMenuHandler = ProfileHandler.hideShortcutMenuHandler(setShow);
     const signOutHandler = ProfileHandler.signOutHandler(navigate);
+    const settingHandler = ProfileHandler.settingHandler(navigate);
 
 
     return (
@@ -34,7 +35,7 @@ const Profile = (props) => {
             {
                 isShow ?
                     <BackdropWhite className={Css.shortcutMenu}>
-                        <div className={Css.setting}>
+                        <div onClick={settingHandler} className={Css.setting}>
                             <span>个人中心</span>
                         </div>
                         <div onClick={signOutHandler} className={Css.signOut}>

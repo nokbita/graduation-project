@@ -1,0 +1,66 @@
+.homePage {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.header {
+    z-index: 999;
+    height: 60px;
+    position: relative;
+}
+
+.content {
+    z-index: 99;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.footer {
+    z-index: 99;
+    position: relative;
+}
+
+.left {
+    height: 100%;
+    min-width: 200px;
+    padding-top: 20px;
+    border-right: 1px solid #dfdfdf;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+.right {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    background-color: #fafafa;
+    overflow: auto;
+
+    position: relative;
+}
+.gpContent {
+    /*width: 100%;*/
+    /*margin-top: 50px;*/
+}
+
+.BreadcrumbNav {
+    margin-top: -10px;
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.currentBreadcrumb {
+    color: #169BD5;
+}
+

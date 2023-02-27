@@ -2,13 +2,15 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid #169BD5;
+    /*border: 1px solid #169BD5;*/
 }
 
 .label {
     font-size: 16px;
+    min-width: 64px;
     margin-right: 10px;
     word-break: keep-all;
+    text-align: right;
 }
 
 .input {
@@ -19,6 +21,7 @@
     width: 200px;
     height: 38px;
     padding: 0 10px;
+    background-color: #fff;
 }
 
 /* 使用webkit内核的浏览器 */

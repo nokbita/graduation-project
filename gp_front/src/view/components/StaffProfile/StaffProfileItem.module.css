@@ -1,0 +1,20 @@
+.staffProfileItem {
+
+}
+
+.itemName {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.itemInfo {
+    max-width: 902px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.itemBox {
+    margin: 0 20px 20px 0;
+
+}

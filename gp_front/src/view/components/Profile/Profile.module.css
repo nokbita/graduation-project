@@ -40,6 +40,10 @@
     font-size: 16px;
 }
 
+.usernameBox > span {
+    word-break: keep-all;
+}
+
 .imgBox > img {
     width: 100%;
 }

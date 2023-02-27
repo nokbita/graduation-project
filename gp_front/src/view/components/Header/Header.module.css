@@ -15,4 +15,5 @@
 .title {
     font-size: 20px;
     font-weight: normal;
+    word-break: keep-all;
 }

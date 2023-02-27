@@ -14,7 +14,7 @@ const BlockNav = ({blockNavProps:{mainLink, subLinks}}) => {
 
     return (
         <div className={Css.blockNav}>
-            <div onClick={clickMainLinkHandler}>
+            <div onClick={clickMainLinkHandler} className={Css.mainLinkBox}>
                 <MainLink
                     linkName={mainLink.linkName}
                     frontIcon={mainLink.frontIcon}

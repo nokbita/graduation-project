@@ -1,7 +1,7 @@
 import React from 'react';
 import Css from "./Header.module.css";
-import SearchWithButton from "./UI/SearchWithButton";
-import Profile from "./Profile/Profile";
+import SearchWithButton from "../UI/SearchWithButton";
+import Profile from "../Profile/Profile";
 
 const Header = () => {
     return (

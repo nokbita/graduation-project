@@ -31,6 +31,12 @@ const ProfileHandler = {
         return () => {
             ProfileService.signOut(navigate);
         };
+    },
+
+    settingHandler: (navigate) => {
+        return () => {
+            ProfileService.settingProfile(navigate);
+        }
     }
 }
 
