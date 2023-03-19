@@ -4,6 +4,7 @@ import SearchWithButton from "../UI/SearchWithButton";
 import Profile from "../Profile/Profile";
 
 const Header = () => {
+
     return (
         <div className={Css.header}>
             <div className={Css.titleBox}>

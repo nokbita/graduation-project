@@ -6,7 +6,7 @@ const StaffProfileItem = ({props: prop}) => {
     return (
         <div className={Css.staffProfileItem}>
             <h2 className={Css.itemName}>{prop.itemName}</h2>
-            <div className={Css.itemInfo}>
+            <div className={Css.bigItemBox}>
                 {
                     prop.itemInfos.map((inputProp) => (
                         <div key={inputProp.id} className={Css.itemBox}>

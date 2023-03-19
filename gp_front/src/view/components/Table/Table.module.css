@@ -1,0 +1,199 @@
+.staffProfile {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.background {
+    /*padding: 20px;*/
+    /*width: 1042px;*/
+}
+
+.tableBox {
+    /*padding-right: 20px;*/
+}
+
+.table {
+    border: 1px solid #dfdfdf;
+    width: 1002px;
+    /*border-radius: 5px;*/
+    /*overflow: auto;*/
+}
+
+.pagination {
+
+}
+
+.header {
+
+}
+
+.body {
+
+}
+
+.row {
+    cursor: default;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 38px;
+}
+
+.table .row {
+    width: 1000px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.body .row:nth-last-child(1) {
+    border: none;
+}
+
+.table .row:hover {
+    background-color: #efefef;
+}
+
+.header > .row:hover {
+    background-color: #fff;
+}
+
+.table li {
+    border-left: 1px solid #dfdfdf;
+}
+.table li:nth-child(1) {
+    border: none;
+}
+
+.serial {
+    min-width: 60px;
+}
+
+.staffId,
+.name,
+.department {
+    min-width: 100px;
+}
+
+.post{
+    min-width: 160px;
+}
+
+.phone,
+.email {
+    min-width: 180px;
+}
+
+.header li {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+.body li {
+    text-align: center;
+    font-size: 16px;
+}
+
+.operate {
+    min-width: 120px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.more,
+.delete {
+    text-align: center;
+    text-decoration: underline;
+}
+.more {
+    margin-left: 10px;
+}
+.delete {
+    margin-right: 10px;
+}
+
+.more:hover,
+.delete:hover {
+    color: #169BD5;
+}
+
+
+.pagination {
+    width: 1002px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.pagination .row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.pagination .row li,
+.goPageInput {
+    width: 40px;
+    height: 38px;
+    margin: 0 5px;
+    background-color: #efefef;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #dfdfdf;
+}
+
+.goPageInput {
+    width: 50px;
+    padding: 5px;
+    outline: none;
+}
+.goPageInput:focus {
+    border: 1px solid #169BD5;
+}
+
+.pagination .row li:hover {
+    background-color: #169BD5;
+    color: #fff;
+}
+
+.pagination .row .paginationActive {
+    background-color: #169BD5;
+    color: #fff;
+}
+
+.pagination .row li.ellipsis {
+    border: none;
+    background-color: #fff;
+    color: #000;
+}
+
+.previousPage,
+.previousPageDisabled,
+.nextPage,
+.nextPageDisabled {
+    width: 80px;
+}
+
+.goPageBox {
+    margin-left: 10px;
+}
+
+.goPageBtn {
+    width: 60px;
+}
+
+.previousPageDisabled,
+.nextPageDisabled {
+    background-color: #cfcfcf;
+    color: #8f8f8f;
+}
+
+.previousPageDisabled:hover,
+.nextPageDisabled:hover {
+    background-color: #cfcfcf;
+    color: #8f8f8f;
+}

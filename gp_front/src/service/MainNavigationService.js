@@ -4,11 +4,19 @@ import MainNavigationRequest from "./request/MainNavigationRequest";
 const MainNavigationService = {
 
     /**
-     * 生成BlockNav组件的属性，返回对象。
+     * 生成 BlockNav 组件的属性，返回对象。
      * @param navigate
      * @returns {{subLinks: [{link: link, linkName: string}, {link: link, linkName: string}], mainLink: {link: mainLink.link, frontIcon: IconDefinition, linkName: string}}}
      */
     blockNavProps: (navigate) => {
+
+        const toStaff = () => {
+            MainNavigationRequest.toStaff(navigate);
+        }
+        const toUser = () => {
+            MainNavigationRequest.toUser(navigate);
+        }
+
         return {
             mainLink: {
                 frontIcon: faUser,
@@ -18,13 +26,13 @@ const MainNavigationService = {
             subLinks: [
                 {
                     link: () => {
-                        MainNavigationRequest.toStaff(navigate);
+                        toStaff(navigate);
                     },
                     linkName: "员工管理"
                 },
                 {
                     link: () => {
-                        MainNavigationRequest.toUser(navigate);
+                        toUser(navigate);
                     },
                     linkName: "用户管理"
                 }

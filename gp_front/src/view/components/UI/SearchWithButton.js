@@ -3,14 +3,14 @@ import Css from "./SearchWithButton.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faSearch, faTimesCircle} from "@fortawesome/free-solid-svg-icons";
 
-const SearchWithButton = () => {
+const SearchWithButton = (props) => {
     return (
         <div className={Css.searchWithButton}>
             <div className={Css.inputBox}>
-                <input className={Css.input} type="text" />
+                <input className={`${Css.input} ${props.inputCss}`} type="text" />
                 <FontAwesomeIcon icon={faTimesCircle} className={Css.clearIcon}/>
             </div>
-            <button className={Css.button}>
+            <button className={Css.button} onClick={props.onClick}>
                 <FontAwesomeIcon icon={faSearch} className={Css.searchIcon} />
             </button>
         </div>

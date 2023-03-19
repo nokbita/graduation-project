@@ -1,29 +1,40 @@
-import React from 'react';
-import {Route, Routes} from "react-router-dom";
+import React, {useCallback, useContext, useEffect} from 'react';
+import {Route, Routes, useLocation, useMatch, useNavigate} from "react-router-dom";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import HomePage from "./pages/HomePage";
-import EditStaffProfile from "./components/StaffProfile/EditStaffProfile";
-import BreadcrumbContext from "../store/BreadcrumbContext";
+import StaffProfile from "./components/StaffProfile/StaffProfile";
+import Context from "../store/Context";
+import AppService from "../service/AppService";
+import {Path} from "../service/tools/StringConst";
+import Table from "./components/Table/Table";
+import InputTableCell from "./components/UI/InputTableCell";
+import AccountStaffPage from "./pages/AccountStaffPage";
+
 
 const App = () => {
-    const breadcrumbs = new Array();
-    breadcrumbs.push({
-        linkName: "主页",
-        onClickHandler: () => {},
-        isLast: true
-    });
+
+
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    useEffect(() => {
+        AppService.signedInCheckHandler(location, navigate);
+    }, [location.pathname]);
+
 
     return (
-        <BreadcrumbContext.Provider value={{breadcrumbs}}>
+        <Context.Provider value={{}}>
             <Routes>
-                <Route path={"/"} element={<HomePage />} >
-                    <Route path={"/profile"} element={<EditStaffProfile />} />
+                <Route path={Path.ROOT} element={<HomePage />} >
+                    <Route path={Path.SETTING_PROFILE} element={<StaffProfile />} />
+                    <Route path={Path.ACCOUNT_STAFF} element={<AccountStaffPage />} />
+                    <Route path={Path.ACCOUNT_STAFF + "/:pageNum"} element={<AccountStaffPage />} />
                 </Route>
-                <Route path={"/sign_in"} element={<SignInPage />} />
-                <Route path={"/sign_up"} element={<SignUpPage />} />
+                <Route path={"/sign-in"} element={<SignInPage />} />
+                <Route path={"/sign-up"} element={<SignUpPage />} />
             </Routes>
-        </BreadcrumbContext.Provider>
+        </Context.Provider>
 
     );
 };

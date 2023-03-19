@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+<input type="file" accept="image/*" />
+</body>
+
+<script>
+    let input = document.getElementsByTagName('input')[0]
+
+    input.addEventListener('change', function () {
+        // 我们可以通过 input 元素的files属性拿到一个 对象，
+        // 这个对象是一个类似数组的对象，代表一组选中的文件，每个成员都是一个 File 实例。
+        const { files } = this
+        const f = files[0]
+        const img = document.createElement('img')
+        // 取出files的第一个对象，
+        // 通过URL.createObjectURL()方法用来为上传/下载的文件、流媒体文件生成一个 URL 字符串。
+        // 这个字符串代表了File对象或Blob对象的 URL
+        img.src = URL.createObjectURL(f)
+        img.style.width = '100px'
+        // 创建一个 img 标签，并且将它的src设置为这个URL路径，然后再将 img 添加到页面
+        document.body.append(img)
+    })
+
+</script>
+</html>

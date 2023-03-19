@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import Css from "./SignUp.module.css";
 import InputWithLabel from "../UI/InputWithLabel";
 import Button from "../UI/Button";
-import BackdropWhite from "../UI/BackdropWhite";
-import {Link} from "react-router-dom";
+import BackgroundWhite from "../UI/BackgroundWhite";
+import {Link, useNavigate} from "react-router-dom";
 import SignUpHandler from "../../../handler/SignUpHandler";
 
 const SignUp = () => {
@@ -15,20 +15,22 @@ const SignUp = () => {
     const [tip, setTip] = useState("");
     const [agree, setAgree] = useState(false);
 
+    const navigate = useNavigate();
+
 
     // input值双向绑定
     const regCodeListener = SignUpHandler.inputChangeListener(regCode, setRegCode);
     const emailListener = SignUpHandler.inputChangeListener(email, setEmail);
-    const passwordListener = SignUpHandler.inputChangeListener(regCode, setRegCode);
+    const passwordListener = SignUpHandler.inputChangeListener(password, setPassword);
     // 点击事件，是否同意协议
     const agreementsHandler = SignUpHandler.agreementsToggleHandler(setAgree);
     // 注册
-    const signUpHandler = SignUpHandler.signUpHandler(agree, regCode, email, password, setTip);
+    const signUpHandler = SignUpHandler.signUpHandler(agree, regCode, email, password, setTip, navigate);
 
 
     return (
         <div className={Css.backdrop}>
-            <BackdropWhite>
+            <BackgroundWhite>
                 <div className={Css.signInComp}>
                     <div className={Css.titleBox}>
                         <h2 className={Css.title}>注册</h2>
@@ -53,10 +55,10 @@ const SignUp = () => {
                         <span>已阅读并同意</span>&nbsp;&nbsp;<a href="#">用户协议</a>&nbsp;&nbsp;<a href="#">保密协议</a>
                     </div>
                     <div className={Css.footerBox}>
-                        <p>已有帐户？<Link to="/sign_in">登录</Link></p>
+                        <p>已有帐户？<Link to="/sign-in">登录</Link></p>
                     </div>
                 </div>
-            </BackdropWhite>
+            </BackgroundWhite>
         </div>
     );
 };

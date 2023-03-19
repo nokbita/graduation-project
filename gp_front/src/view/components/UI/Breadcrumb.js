@@ -3,7 +3,10 @@ import Css from "./Breadcrumb.module.css";
 
 const Breadcrumb = (props) => {
     return (
-        <div onClick={props.onClick} className={`${props.className} ${Css.Breadcrumb}`}>
+        <div
+            className={`${props.className} ${Css.Breadcrumb}`}
+            onClick={props.onClickHandler}
+        >
             {props.linkName}
         </div>
     );

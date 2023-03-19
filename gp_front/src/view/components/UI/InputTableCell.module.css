@@ -1,0 +1,20 @@
+.inputTableCell {
+    width: 100%;
+    /*border: 1px solid #169BD5;*/
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.inputTableCell > input {
+    width: 100%;
+    height: 38px;
+    padding: 0 10px;
+    outline: none;
+    border: 1px solid #dfdfdf;
+    /*border-radius: 5px;*/
+    font-size: 16px;
+}
+
+.inputTableCell > input:focus {
+    outline: 1px solid #169BD5;
+}

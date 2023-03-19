@@ -11,7 +11,9 @@ const InputWithRightLabel = ({props: prop}) => {
                 type={prop.inputType}
                 value={prop.inputValue}
                 onChange={prop.onChangeListener}
-                placeholder={prop.placeholder}/>
+                placeholder={prop.placeholder}
+                disabled={false}
+            />
         </div>
     );
 };

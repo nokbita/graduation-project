@@ -1,0 +1,85 @@
+.editStaffProfile {
+    padding: 20px 0 20px 20px;
+    width: 924px;
+}
+
+.btnBox {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-right: 30px;
+}
+
+.cancel {
+    background-color: #afafaf;
+    margin-right: 20px;
+}
+.cancel:hover {
+    background-color: rgba(175, 175, 175, 0.9);
+}
+
+
+.account {
+    /* 以下是定制内容 */
+}
+
+.itemName {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.items {
+    max-width: 902px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.item {
+    margin: 0 20px 20px 0;
+}
+
+.bigImgBox {
+    display: flex;
+    align-items: center;
+}
+
+.bigImgBox > label {
+    margin-right: 10px;
+    font-size: 16px;
+    min-width: 64px;
+    word-break: keep-all;
+    text-align: right;
+}
+
+.bigImgBox > input {
+    display: none;
+}
+
+.imgBox {
+    width: 80px;
+    height: 80px;
+    /*border-radius: 50%;*/
+    border: 2px solid #bfbfbf;
+    overflow: hidden;
+}
+
+.imgBox > img {
+    width: 100%;
+}
+
+.changeImgBtn {
+    width: 80px;
+    margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+

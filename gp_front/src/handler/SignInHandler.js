@@ -3,25 +3,6 @@ import SignInService from "../service/SignInService";
 const SignInHandler = {
 
 
-    /**
-     * 登录
-     * @param account
-     * @param password
-     * @param setTip
-     * @returns {(function(): void)|*} 函数
-     */
-    signInHandler: (account, password, setTip) => {
-        return () => {
-            SignInService.signIn(account, password).then((result) => {
-                // 登陆失败
-                if (result.meta.status !== 2000) {
-                    setTip(result.meta.message);
-                    return;
-                }
-                // 登陆成功...
-            });
-        };
-    },
 
     /**
      * 监听input值的改变

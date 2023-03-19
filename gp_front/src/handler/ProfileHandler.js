@@ -1,4 +1,5 @@
 import ProfileService from "../service/ProfileService";
+import {Path} from "../service/tools/StringConst";
 
 const ProfileHandler = {
 
@@ -33,9 +34,12 @@ const ProfileHandler = {
         };
     },
 
-    settingHandler: (navigate) => {
+    settingHandler: (navigate, location) => {
         return () => {
-            ProfileService.settingProfile(navigate);
+            if (location.pathname !== Path.SETTING_PROFILE) {
+                ProfileService.settingProfile(navigate);
+            }
+
         }
     }
 }

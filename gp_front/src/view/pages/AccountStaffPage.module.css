@@ -1,0 +1,36 @@
+.accountStaffPage {
+    border: none;
+    border-radius: 0;
+    /*box-shadow: 5px 5px 5px 0px #dfdfdf;*/
+    box-shadow: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 20px 10px 20px;
+}
+
+.search {
+    display: flex;
+}
+.select {
+    border: 1px solid #dfdfdf;
+    margin-right: 10px;
+    height: 38px;
+    outline: none;
+}
+.select:focus {
+    border: 1px solid #169BD5;
+}
+
+.table {
+    padding: 0 20px 20px 20px;
+}
+
+.inputCss {
+    width: 260px;
+    border-radius: 0;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
-import Css from "./BackdropWhite.module.css";
+import Css from "./BackroundWhite.module.css";
 
-const BackdropWhite = (props) => {
+const BackgroundWhite = (props) => {
     return (
         <div className={Css.backdrop + " " +props.className}>
             {props.children}
@@ -9,4 +9,4 @@ const BackdropWhite = (props) => {
     );
 };
 
-export default BackdropWhite;
+export default BackgroundWhite;

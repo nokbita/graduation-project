@@ -2,9 +2,10 @@ import React, { useState} from "react";
 import Css from "./SignIn.module.css";
 import InputWithLabel from "../UI/InputWithLabel";
 import Button from "../UI/Button";
-import BackdropWhite from "../UI/BackdropWhite";
-import {Link} from "react-router-dom";
+import BackgroundWhite from "../UI/BackgroundWhite";
+import {Link, useNavigate} from "react-router-dom";
 import SignInHandler from "../../../handler/SignInHandler";
+import SignInService from "../../../service/SignInService";
 
 
 const SignIn = () => {
@@ -12,17 +13,17 @@ const SignIn = () => {
     const [account, setAccount] = useState("");
     const [password, setPassword] = useState("");
     const [tip, setTip] = useState("");
+    const navigate = useNavigate();
 
     // input值双向绑定
     const accountChangeListener = SignInHandler.inputChangeListener(account, setAccount);
     const passwordChangeListener = SignInHandler.inputChangeListener(password, setPassword);
     // 登录
-    const signInHandler = SignInHandler.signInHandler(account, password, setTip);
-
+    const signInHandler = SignInService.signInHandler(account, password, setTip, navigate);
 
     return (
         <div className={Css.backdrop}>
-            <BackdropWhite>
+            <BackgroundWhite>
                 <div className={Css.signInComp}>
                     <div className={Css.titleBox}>
                         <h2 className={Css.title}>登录</h2>
@@ -41,10 +42,10 @@ const SignIn = () => {
                         <Button btnName="登录"/>
                     </div>
                     <div className={Css.footerBox}>
-                        <p>还没有账户？<Link to="/sign_up">注册</Link></p>
+                        <p>还没有账户？<Link to="/sign-up">注册</Link></p>
                     </div>
                 </div>
-            </BackdropWhite>
+            </BackgroundWhite>
         </div>
 
     );

@@ -7,7 +7,7 @@
     font-weight: bold;
 }
 
-.itemInfo {
+.bigItemBox {
     max-width: 902px;
     padding: 10px;
     display: flex;

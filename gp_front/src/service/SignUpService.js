@@ -1,4 +1,5 @@
-import SignUpRequest from "./request/SignUpRequest";
+import FrontRequest from "./request/FrontRequest";
+import StringConst from "./tools/StringConst";
 
 const SignUpService = {
 
@@ -21,19 +22,6 @@ const SignUpService = {
 
 
     /**
-     * 验证注册码
-     * @param regCode
-     * @returns {Promise<JSON>}
-     */
-    verifyRegCode: (regCode) => {
-        const body = {
-            reg_code: regCode
-        };
-        return SignUpRequest.toRegCode(body);
-    },
-
-
-    /**
      * 注册
      * @param regCode
      * @param email
@@ -43,15 +31,20 @@ const SignUpService = {
     signUp: (regCode, email, password) => {
         const body = {
             // 默认账号为邮箱
-            reg_code: regCode,
+            regCode: regCode,
             email: email,
             password: password
         };
-        return SignUpRequest.toSignUp(body);
+        return FrontRequest.toSignUp(body);
     },
 
 
-
+    signUpSucceed(navigate, jwt) {
+        // 存储注册（登录）信息
+        localStorage.setItem(StringConst.STAFF_SIGN, jwt);
+        // 重定向到主页
+        FrontRequest.toHomePage(navigate);
+    }
 }
 
 

@@ -32,23 +32,24 @@ const SignUpHandler = {
      * @param email
      * @param password
      * @param setTip
+     * @param navigate
      * @returns {(function(): void)|*} 函数
      */
-    signUpHandler(agree, regCode, email, password, setTip) {
+    signUpHandler(agree, regCode, email, password, setTip, navigate) {
         return () => {
             // 验证是否勾选用户协议
             if (!SignUpService.verifyAgreements(agree, setTip)) return;
 
-            // 验证注册码是否正确、开始注册
-            const regCodePromise = SignUpService.verifyRegCode(regCode);
-            const signUpPromise = SignUpService.signUp(regCode,email,password);
-            Promise.all([regCodePromise, signUpPromise]).then((result) =>{
+            // 开始注册
+            SignUpService.signUp(regCode,email,password).then((result) =>{
                 // 注册失败，提示错误信息
                 if (result.meta.status !== 2000) {
                     setTip(result.meta.message);
                     return;
                 }
                 // 注册成功...
+                console.log("注册成功...",result);
+                SignUpService.signUpSucceed(navigate, result.meta.details.jwt);
             });
         }
     }
