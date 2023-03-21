@@ -103,13 +103,6 @@ const StaffProfileController = {
 
     },
 
-    /**
-     * 导航到主页
-     * @param navigate
-     */
-    homePageNavigator(navigate) {
-        Controller.homePageNavigator(navigate);
-    },
     changePhotoRequester(dataURL) {
         const body = {
             STAFF_SIGN: localStorage.getItem(StringConst.STAFF_SIGN),
@@ -118,6 +111,61 @@ const StaffProfileController = {
         return FetchTools.post1("/staff/upload/photo-base64",body);
     },
 
+    addByStaffHandler(postState, departmentState, supervisorState, nameState, sexState, photoState,
+                      birthDateState, identifyNumState, educationState, nativePlaceState, addressState, phoneState,
+                      emailState, wechatState, qqState) {
+        const [post, setPost] = postState;
+        const [department, setDepartment] = departmentState;
+        const [supervisor, setSupervisor] = supervisorState;
+        const [name, setName] = nameState;
+        const [sex, setSex] = sexState;
+        const [photo, setPhoto] = photoState;
+        const [birthDate, setBirthdate] = birthDateState;
+        const [identifyNum, setIdentifyNum] = identifyNumState;
+        const [education, setEducation] = educationState;
+        const [nativePlace, setNativePlace] = nativePlaceState;
+        const [address, setAddress] = addressState;
+        const [phone, setPhone] = phoneState;
+        const [email, setEmail] = emailState;
+        const [wechat, setWechat] = wechatState;
+        const [qq, setQQ] = qqState;
+
+        const body = {
+            staffAccount: {
+
+            },
+            staffWork: {
+                post: post,
+                department: department,
+                supervisor: supervisor
+            },
+            staffInfo: {
+                name: name,
+                photo: photo,
+                sex: sex,
+                birthTime: birthDate,
+                identifyNum: identifyNum,
+                education: education
+            },
+            staffContact: {
+                nativePlace: nativePlace,
+                address: address,
+                phone: phone,
+                email: email,
+                wechat: wechat,
+                qq: qq
+            },
+            staffSign: {
+                name: name,
+                photo: photo,
+                phone: phone,
+                email: email
+            },
+        }
+
+        return FetchTools.post(FetchTools.backEndURL + Path.STAFF_ADD, body);
+
+    }
 }
 
 export default StaffProfileController;

@@ -8,39 +8,48 @@ import {Link} from "react-router-dom";
 
 const TableService = {
 
-    getStaffListHandler(pageNum, pageSize, setTotalPages, setStaffList) {
-        TableController.getStaffListRequester(pageNum, pageSize).then(result => {
+    getStaffListHandler(pageNum, pageSize, setTotalPages, setStaffList, inputValue, selectField) {
+        TableController.getStaffListRequester(pageNum, pageSize, inputValue, selectField).then(result => {
             if (result?.meta.status === 2000) {
                 Tools.printSucceedLog(result);
-                setStaffList(result.data.staffs.reverse());
+                setStaffList(result.data.staffs);
                 setTotalPages(result.meta.details.pagination.totalPages);
                 return;
             }
             Tools.printFailedLog(result);
         });
     },
-    previousPageHandler(pageNum, totalPages, navigate) {
+    previousPageHandler(pageNum, totalPages, navigate, pagination, setPagination) {
         const previous = () => {
             if (pageNum === 1) {
                 return;
+            }
+            if (pageNum === pagination[0]) {
+                TableService.getPagination(0, pageNum, totalPages, setPagination);
             }
             pageNum -= 1;
             TableController.paginationNavigator(pageNum, navigate);
         }
         return previous;
     },
-    nextPageHandler(pageNum, totalPages, navigate) {
+    nextPageHandler(pageNum, totalPages, navigate, pagination, setPagination) {
         const next = () => {
             if (pageNum === totalPages) {
                 return;
             }
+
+            if (pageNum === pagination[pagination.length - 1]) {
+                TableService.getPagination(1, pageNum,totalPages, setPagination);
+            }
+
             pageNum += 1;
             TableController.paginationNavigator(pageNum, navigate);
         }
         return next;
     },
-    moreHandler(setStaffPhone, setStaffEmail, setShowStaffProfile) {
+    moreHandler(setStaffPhone, setStaffEmail, setShowStaffProfile, setUpdate) {
         return (staffPhone, email) => {
+            setUpdate(true);
             setShowStaffProfile(true);
             setStaffPhone(staffPhone);
             setStaffEmail(email);
@@ -49,23 +58,42 @@ const TableService = {
     deleteHandler() {
         return undefined;
     },
-    getPagination(totalPages, setPagination) {
-        const pagination = [];
-        console.log("页码------", totalPages);
-        if (totalPages <= 4) {
-            for(let i = 0; i < totalPages; i++) {
-                pagination.push(i+1);
+    /**
+     *
+     * @param direction
+     * @param pageNum 当前页码
+     * @param totalPages 总页数
+     * @param setPagination 分页状态
+     */
+    getPagination(direction, pageNum, totalPages, setPagination) {
+        if (direction === 1) {
+            const paginationTemp = [];
+            let page = pageNum;
+            if (pageNum !== 1) {
+                page = pageNum + 1;
+            } else {
+                page = pageNum;
             }
-        } else {
-            for(let i = 0; i < 3; i++) {
-                pagination.push(i+1);
+            for (let i = 0; i < 3; i++) {
+                if (page > totalPages) break;
+                paginationTemp.push(page);
+                page++;
             }
-            pagination.push(totalPages);
+            setPagination(paginationTemp);
+            return;
         }
-        setPagination(pagination);
+        const paginationTemp = [];
+        let page = pageNum - 1;
+        for (let i = 0; i < 3; i++) {
+            if (page < 1) break;
+            paginationTemp.push(page);
+            page--;
+        }
+        setPagination(paginationTemp.reverse());
     },
     clickPaginationHandler(navigate) {
-        return (pageNum) =>{
+        return (pageNum,totalPages, setPagination) =>{
+            // TableService.getPagination(pageNum, totalPages, setPagination);
             TableController.paginationNavigator(pageNum, navigate);
         };
     },

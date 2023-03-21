@@ -1,3 +1,10 @@
+.staffProfile {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .profile {
     display: flex;
     flex-direction: column;

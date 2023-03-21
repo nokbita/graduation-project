@@ -24,6 +24,10 @@
     background-color: #fff;
 }
 
+.input:focus {
+    border: 1px solid #169BD5;
+}
+
 /* 使用webkit内核的浏览器 */
 .input::placeholder {
     color: #bfbfbf;

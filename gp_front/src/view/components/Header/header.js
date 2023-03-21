@@ -8,11 +8,11 @@ const Header = () => {
     return (
         <div className={Css.header}>
             <div className={Css.titleBox}>
-                <h1 className={Css.title}>模块化通用数据中台</h1>
+                <h1 className={Css.title}>基于前后端架构分离的员工管理系统的设计与实现</h1>
             </div>
-            <div className={Css.searchBox}>
-                <SearchWithButton />
-            </div>
+            {/*<div className={Css.searchBox}>*/}
+            {/*    <SearchWithButton />*/}
+            {/*</div>*/}
             <div className={Css.profileBox}>
                 <Profile />
             </div>

@@ -38,31 +38,31 @@ const StaffProfile = (props) => {
 
     const navigate = useNavigate();
     // setting页面的取消、更新
-    const cancelBySettingHandler = StaffProfileService.cancelBySettingHandler(navigate);
+    const cancelBySettingHandler = StaffProfileService.cancelBySettingHandler(props.setShowStaffProfile);
     const updateBySettingHandler = StaffProfileService.updateBySettingHandler(props.staffPhone, props.staffEmail, props.setShowStaffProfile,
         staffIdState, postState, departmentState, supervisorState, nameState, sexState, photoState, birthDateState,
         identifyNumState, educationState, nativePlaceState, addressState, phoneState, emailState, wechatState, qqState,
-        passwordState, navigate);
+        passwordState, navigate, props.setUpdateList, props.setUpdateProfile);
     // staff管理页面的取消、更新、添加
     const cancelByStaffHandler = StaffProfileService.cancelByStaffHandler(props.setShowStaffProfile);
     const updateByStaffHandler = updateBySettingHandler;
-    const addByStaffHandler = StaffProfileService.addByStaffHandler(staffIdState, postState, departmentState, supervisorState,
-        nameState, sexState, birthDateState, identifyNumState, educationState,
-        nativePlaceState, addressState, phoneState, emailState, wechatState, qqState);
+    const addByStaffHandler = StaffProfileService.addByStaffHandler(props.setShowStaffProfile,
+        staffIdState, postState, departmentState, supervisorState, nameState, sexState, photoState, birthDateState,
+        identifyNumState, educationState, nativePlaceState, addressState, phoneState, emailState, wechatState, qqState,
+        props.setUpdateList);
 
     const location = useLocation();
     useEffect(() =>{
-        if (location.pathname === "/" + Path.SETTING_PROFILE) {
+        if (props.isSetting) {
             StaffProfileService.getProfileHandler(staffIdState, postState, departmentState, supervisorState,
                 nameState, sexState, birthDateState, identifyNumState, educationState,
                 nativePlaceState, addressState, phoneState, emailState, wechatState, qqState, photoState);
             return;
         }
-        if (location.pathname.indexOf(Path.ACCOUNT_STAFF)) {
+        if (props.staffEmail) {
             StaffProfileService.getProfileHandlerByStaffEmail(props.staffEmail, staffIdState, postState, departmentState, supervisorState,
                 nameState, sexState, birthDateState, identifyNumState, educationState,
                 nativePlaceState, addressState, phoneState, emailState, wechatState, qqState, photoState);
-            return;
         }
     },[]);
 

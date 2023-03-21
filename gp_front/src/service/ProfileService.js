@@ -10,11 +10,6 @@ const ProfileService = {
         FrontRequest.toSignInPage(navigate);
     },
 
-    settingProfile: (navigate) => {
-        FrontRequest.toSetting(navigate);
-    },
-
-
     getStaffSignHandler(setProfile) {
         ProfileController.getStaffSignRequester().then((result) => {
             if (result?.meta.status === 2000) {

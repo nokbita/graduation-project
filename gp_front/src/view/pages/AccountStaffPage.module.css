@@ -34,3 +34,11 @@
     width: 260px;
     border-radius: 0;
 }
+
+
+.staffProfile {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -17,6 +17,8 @@ const StaffProfileService = {
                     label: "员工编号",
                     inputType: "text",
                     inputValue: staffId,
+                    disabled: true,
+                    style: {backgroundColor: "#efefef", cursor:"not-allowed"},
                     inputPlaceholder: "",
                     onChangeListener: (e) => {
                         setStaffId(e.target.value);
@@ -202,9 +204,9 @@ const StaffProfileService = {
      * @param navigate
      * @returns {(function())|*}
      */
-    cancelBySettingHandler: (navigate) => {
+    cancelBySettingHandler: (setShowStaffProfile) => {
         return () => {
-            StaffProfileController.homePageNavigator(navigate);
+            setShowStaffProfile(false);
         };
     },
     /**
@@ -242,11 +244,12 @@ const StaffProfileService = {
      * @param qqState
      * @param passwordState
      * @param navigate
+     * @param setUpdateList
      */
     updateBySettingHandler: (staffPhone, staffEmail, setShowStaffProfile,
         staffIdState, postState, departmentState, supervisorState, nameState, sexState, photoState, birthDateState,
         identifyNumState, educationState, nativePlaceState, addressState, phoneState, emailState, wechatState, qqState,
-        passwordState, navigate) => {
+        passwordState, navigate, setUpdateList, setUpdateProfile) => {
 
         // 对密码进行合法性校验
         const [password, setPassword] = passwordState;
@@ -261,6 +264,9 @@ const StaffProfileService = {
                     if (result?.meta.status === 2000) {
                         // 成功
                         Tools.printSucceedLog(result);
+                        if (staffEmail) {
+                            setUpdateList(true);
+                        }
                         // 密码被修改
                         if (result.meta.details.isPasswordChanged) {
                             localStorage.removeItem(StringConst.STAFF_SIGN);
@@ -268,6 +274,10 @@ const StaffProfileService = {
                         }
                         // 关闭 StaffProfile 面板
                         setShowStaffProfile(false);
+                        // 个人中心更新头像
+                        if (!staffEmail) {
+                            setUpdateProfile(true);
+                        }
                         return;
                     }
                     // 失败
@@ -276,9 +286,7 @@ const StaffProfileService = {
         };
     },
 
-    addByStaffHandler(staffIdState, postState, departmentState, supervisorState, nameState, sexState, birthDateState, identifyNumState, educationState, nativePlaceState, addressState, phoneState, emailState, wechatState, qqState) {
-        return undefined;
-    },
+
 
     /**
      * 从后台获取 profile
@@ -297,6 +305,7 @@ const StaffProfileService = {
      * @param emailState
      * @param wechatState
      * @param qqState
+     * @param photoState
      */
     getProfileHandler(staffIdState, postState, departmentState, supervisorState,
                       nameState, sexState, birthDateState, identifyNumState, educationState,
@@ -440,6 +449,25 @@ const StaffProfileService = {
         };
     },
 
+    addByStaffHandler(setShowStaffProfile, staffIdState, postState, departmentState, supervisorState, nameState,
+                      sexState, photoState, birthDateState, identifyNumState, educationState, nativePlaceState,
+                      addressState, phoneState, emailState, wechatState, qqState, setUpdateList) {
+        return () => {
+            StaffProfileController.addByStaffHandler(postState, departmentState, supervisorState, nameState,
+                sexState, photoState, birthDateState, identifyNumState, educationState, nativePlaceState,
+                addressState, phoneState, emailState, wechatState, qqState).then((result) =>{
+                    if (result?.meta.status === 2000) {
+                        Tools.printSucceedLog(result);
+                        setShowStaffProfile(false);
+                        console.log("我是什么……………………")
+                        console.log(setUpdateList)
+                        setUpdateList(true);
+                        return;
+                    }
+                    Tools.printFailedLog(result);
+            });
+        };
+    }
 }
 
 export default StaffProfileService;

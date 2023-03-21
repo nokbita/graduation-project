@@ -21,8 +21,19 @@
     /*overflow: auto;*/
 }
 
-.pagination {
 
+.pagination {
+    width: 1002px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.paginationBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .header {
@@ -119,13 +130,6 @@
 }
 
 
-.pagination {
-    width: 1002px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
 
 .pagination .row {
     display: flex;
@@ -138,7 +142,7 @@
 .goPageInput {
     width: 40px;
     height: 38px;
-    margin: 0 5px;
+    margin: 0 5px 0 0;
     background-color: #efefef;
     line-height: 38px;
     text-align: center;
@@ -177,9 +181,25 @@
 .nextPageDisabled {
     width: 80px;
 }
+.previousPage,
+.previousPageDisabled {
+    margin-right: 5px;
+}
 
 .goPageBox {
-    margin-left: 10px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.total {
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid #dfdfdf;
+    background-color: #efefef;
+    padding: 0 10px;
+    border-radius: 5px;
+    cursor: default;
 }
 
 .goPageBtn {

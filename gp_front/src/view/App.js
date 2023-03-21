@@ -27,7 +27,6 @@ const App = () => {
         <Context.Provider value={{}}>
             <Routes>
                 <Route path={Path.ROOT} element={<HomePage />} >
-                    <Route path={Path.SETTING_PROFILE} element={<StaffProfile />} />
                     <Route path={Path.ACCOUNT_STAFF} element={<AccountStaffPage />} />
                     <Route path={Path.ACCOUNT_STAFF + "/:pageNum"} element={<AccountStaffPage />} />
                 </Route>

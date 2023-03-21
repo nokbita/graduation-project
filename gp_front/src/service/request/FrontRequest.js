@@ -14,13 +14,6 @@ const FrontRequest = {
         navigate("/sign-in", {replace: true});
     },
 
-    /**
-     * 跳转到个人中心
-     * @param navigate
-     */
-    toSetting: (navigate) => {
-        navigate(Path.SETTING_PROFILE);
-    },
 
 
     /**

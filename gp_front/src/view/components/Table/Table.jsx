@@ -31,35 +31,24 @@ const TABLE_DATA = {
 };
 
 const Table = (props) => {
-    let {pageNum} = useParams();
-    if (!pageNum) {
-        pageNum = +1;
-    }
-    pageNum = Number(pageNum);
-    const pageSize = 2;
-    const [totalPages, setTotalPages] = useState(1);
-    const [staffList, setStaffList] = useState([]);
-    const [pagination, setPagination] = useState([]);
+
+
+    const pageNum = props.pageNum;
+    const pageSize = props.pageSize;
+    const [totalPages, setTotalPages] = props.totalPagesState;
+    const [staffList, setStaffList] = props.staffListState;
+    const [pagination, setPagination] = props.paginationState;
     const navigate = useNavigate();
-    const [isShowStaffProfile, setShowStaffProfile] = useState(false);
+    const [isShowStaffProfile, setShowStaffProfile] = props.showStaffProfileState;
     const [staffEmail, setStaffEmail] = useState("");
     const [staffPhone, setStaffPhone] = useState("");
     const goPageInput = useRef(null);
 
-    useEffect(() =>{
-        TableService.getStaffListHandler(pageNum, pageSize, setTotalPages, setStaffList);
-    },[pageNum]);
-
-    useEffect(() =>{
-        TableService.getPagination(totalPages, setPagination);
-    },[totalPages])
-
-    //
-    const previousPageHandler = TableService.previousPageHandler(pageNum, totalPages, navigate);
-    const nextPageHandler = TableService.nextPageHandler(pageNum, totalPages, navigate);
+    const previousPageHandler = TableService.previousPageHandler(pageNum, totalPages, navigate, pagination,  setPagination);
+    const nextPageHandler = TableService.nextPageHandler(pageNum, totalPages, navigate, pagination,  setPagination);
     const clickPaginationHandler = TableService.clickPaginationHandler(navigate);
     const goPageHandler = TableService.goPageHandler(totalPages, navigate);
-    const moreHandler = TableService.moreHandler(setStaffPhone, setStaffEmail, setShowStaffProfile);
+    const moreHandler = TableService.moreHandler(setStaffPhone, setStaffEmail, setShowStaffProfile, props.setUpdate);
     const deleteHandler = TableService.deleteHandler();
 
 
@@ -73,8 +62,10 @@ const Table = (props) => {
                             staffPhone={staffPhone}
                             staffEmail={staffEmail}
                             isSetting={false}
-                            isUpdate={true}
-                            setShowStaffProfile={setShowStaffProfile} />
+                            isUpdate={props.isUpdate}
+                            setUpdateList={props.setUpdateList}
+                            setShowStaffProfile={setShowStaffProfile}
+                        />
                     </div>
                     </Backdrop>
                 : null
@@ -124,6 +115,8 @@ const Table = (props) => {
             {
                 staffList.length !== 0
                 ? <div className={Css.pagination}>
+                    <div className={Css.total}>总页数：{totalPages}</div>
+                    <div className={Css.paginationBox}>
                         <div className={Css.previousBox}>
                             {
                                 pageNum === 1
@@ -133,11 +126,11 @@ const Table = (props) => {
                         </div>
                         <ul className={Css.row}>
                             {
-                                pagination.map((page) =>(
+                                pagination.map((page, index) => (
                                     <li
                                         key={page}
                                         className={page === pageNum ? Css.paginationActive : null}
-                                        onClick={() => (clickPaginationHandler(page))}
+                                        onClick={() => (clickPaginationHandler(page,totalPages, setPagination))}
                                     >{page}</li>
                                 ))
                             }
@@ -156,7 +149,8 @@ const Table = (props) => {
                                     onClickHandler={() => (goPageHandler(goPageInput.current.value))} />
                         </div>
                     </div>
-                : null
+                </div>
+                : <div>无数据</div>
             }
         </div>
     </div>

@@ -34,12 +34,9 @@ const ProfileHandler = {
         };
     },
 
-    settingHandler: (navigate, location) => {
+    settingHandler: (setShowStaffProfile) => {
         return () => {
-            if (location.pathname !== Path.SETTING_PROFILE) {
-                ProfileService.settingProfile(navigate);
-            }
-
+            setShowStaffProfile(true);
         }
     }
 }
