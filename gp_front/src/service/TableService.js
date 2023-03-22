@@ -1,11 +1,6 @@
 import TableController from "../controller/TableController";
 import Tools from "./tools/Tools";
-import {Path} from "./tools/StringConst";
-import {tab} from "@testing-library/user-event/dist/tab";
-import Css from "../view/components/Table/Table.module.css";
 import React from "react";
-import {Link} from "react-router-dom";
-
 const TableService = {
 
     getStaffListHandler(pageNum, pageSize, setTotalPages, setStaffList, inputValue, selectField) {
@@ -55,8 +50,11 @@ const TableService = {
             setStaffEmail(email);
         };
     },
-    deleteHandler() {
-        return undefined;
+    deleteHandler(setShowDialog, setEmailByDialog) {
+        return (email) => {
+            setShowDialog(true);
+            setEmailByDialog(email);
+        };
     },
     /**
      *

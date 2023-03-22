@@ -1,7 +1,5 @@
 import AccountStaffPageController from "../controller/AccountStaffPageController";
 import Tools from "./tools/Tools";
-import TableController from "../controller/TableController";
-
 const AccountStaffPageService = {
 
     searchHandler(setStaffList, pageNum, pageSize, setTotalPages) {
@@ -24,6 +22,17 @@ const AccountStaffPageService = {
             setUpdate(false);
             setShowStaffProfile(true);
         };
+    },
+
+    deleteHandler(emailByDialog) {
+        AccountStaffPageController.deleteStaffRequester(emailByDialog).then((result) => {
+            if (result?.meta.status === 2000) {
+                Tools.printSucceedLog(result);
+
+                return;
+            }
+            Tools.printFailedLog(result);
+        });
     }
 }
 

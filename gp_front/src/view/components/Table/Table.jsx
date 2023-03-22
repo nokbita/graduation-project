@@ -1,13 +1,12 @@
-import React, {useEffect, useRef, useState} from 'react';
-import InputTableCell from "../UI/InputTableCell";
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import Css from "./Table.module.css";
-import {library} from "@fortawesome/fontawesome-svg-core";
 import Button from "../UI/Button";
 import TableService from "../../../service/TableService";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Backdrop from "../UI/Backdrop";
 import StaffProfile from "../StaffProfile/StaffProfile";
-import BackgroundWhite from "../UI/BackgroundWhite";
+import Dialog from "../UI/Dialog";
+import DialogContext from "../../../store/DialogContext";
 
 const TABLE_DATA = {
     tbody: [
@@ -32,7 +31,6 @@ const TABLE_DATA = {
 
 const Table = (props) => {
 
-
     const pageNum = props.pageNum;
     const pageSize = props.pageSize;
     const [totalPages, setTotalPages] = props.totalPagesState;
@@ -49,11 +47,26 @@ const Table = (props) => {
     const clickPaginationHandler = TableService.clickPaginationHandler(navigate);
     const goPageHandler = TableService.goPageHandler(totalPages, navigate);
     const moreHandler = TableService.moreHandler(setStaffPhone, setStaffEmail, setShowStaffProfile, props.setUpdate);
-    const deleteHandler = TableService.deleteHandler();
 
+    const showDialogState = useState(false);
+    const [isShowDialog, setShowDialog] = showDialogState;
+    const [emailByDialog, setEmailByDialog] = useState("");
+    const deleteHandler = TableService.deleteHandler(setShowDialog, setEmailByDialog);
+    const dialogContext = useContext(DialogContext);
+    console.log(dialogContext)
 
     return (
         <div className={Css.background}>
+            {
+                isShowDialog
+                    ? <Dialog
+                        title={dialogContext.title}
+                        description={dialogContext.description}
+                        cancel={() => dialogContext.cancel(setShowDialog)}
+                        confirm={() => dialogContext.confirm(setShowDialog, emailByDialog)}
+                    />
+                    : null
+            }
         {
             isShowStaffProfile
                 ? <Backdrop>

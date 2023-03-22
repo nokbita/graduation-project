@@ -27,7 +27,8 @@ const Path = {
     STAFF_ADD: "/staff/add",
     STAFF_SIGN: "/staff/sign-in",
     STAFF_LIST: "/staff/list",
-    STAFF_SEARCH: "/staff/search"
+    STAFF_SEARCH: "/staff/search",
+    STAFF_DELETE: "/staff/delete"
 
 }
 

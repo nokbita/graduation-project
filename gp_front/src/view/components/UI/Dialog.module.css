@@ -1,0 +1,36 @@
+.dialog {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
+    max-height: 500px;
+    min-height: 100px;
+    box-shadow: 2px 2px 2px 0 #dfdfdf;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.description {
+    margin-bottom: 20px;
+}
+
+.btnBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cancel {
+    margin-right: 20px;
+}
+

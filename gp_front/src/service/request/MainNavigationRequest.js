@@ -6,7 +6,7 @@ const MainNavigationRequest = {
     },
 
     toUser: (navigate) => {
-        navigate("/account/user");
+        // navigate("/account/user");
     }
 
 }

@@ -1,6 +1,6 @@
 import Tools from "./tools/Tools";
 import StaffProfileController from "../controller/StaffProfileController";
-import StringConst, {Path} from "./tools/StringConst";
+import StringConst from "./tools/StringConst";
 import Controller from "../controller/Controller";
 
 const StaffProfileService = {
@@ -201,8 +201,8 @@ const StaffProfileService = {
     },
     /**
      * 个人中心 的取消
-     * @param navigate
      * @returns {(function())|*}
+     * @param setShowStaffProfile
      */
     cancelBySettingHandler: (setShowStaffProfile) => {
         return () => {
@@ -245,6 +245,7 @@ const StaffProfileService = {
      * @param passwordState
      * @param navigate
      * @param setUpdateList
+     * @param setUpdateProfile
      */
     updateBySettingHandler: (staffPhone, staffEmail, setShowStaffProfile,
         staffIdState, postState, departmentState, supervisorState, nameState, sexState, photoState, birthDateState,

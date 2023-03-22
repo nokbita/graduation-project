@@ -30,12 +30,12 @@ const MainNavigationService = {
                     },
                     linkName: "员工管理"
                 },
-                {
-                    link: () => {
-                        toUser(navigate);
-                    },
-                    linkName: "用户管理"
-                }
+                // {
+                //     link: () => {
+                //         toUser(navigate);
+                //     },
+                //     linkName: "用户管理"
+                // }
             ]
         }
     },

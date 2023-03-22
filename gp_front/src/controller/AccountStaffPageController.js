@@ -12,6 +12,12 @@ const AccountStaffPageController = {
             value: inputValue
         }
         return FetchTools.post1(Path.STAFF_LIST, body);
+    },
+    deleteStaffRequester(emailByDialog) {
+        const body = {
+            staffEmail: emailByDialog
+        }
+        return FetchTools.post1(Path.STAFF_DELETE, body);
     }
 }
 

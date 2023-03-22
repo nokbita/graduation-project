@@ -6,7 +6,7 @@ import BlockNavHandler from "../../../handler/BlockNavHandler";
 import PropTypes from "prop-types";
 
 const BlockNav = ({blockNavProps:{mainLink, subLinks}}) => {
-    const [isExpand, setExpand] = useState(false);
+    const [isExpand, setExpand] = useState(true);
     // 记录点击的子链接是哪个，用于更改该链接的颜色
     const [clickedNum, setClickedNum] = useState(-1);
     const clickMainLinkHandler = BlockNavHandler.clickMainLink(setExpand, setClickedNum, subLinks[0].link);

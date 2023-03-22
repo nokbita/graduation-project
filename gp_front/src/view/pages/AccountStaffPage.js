@@ -5,11 +5,10 @@ import Button from "../components/UI/Button";
 import Table from "../components/Table/Table";
 import BackgroundWhite from "../components/UI/BackgroundWhite";
 import AccountStaffPageService from "../../service/AccountStaffPageService";
-import Backdrop from "../components/UI/Backdrop";
-import StaffProfile from "../components/StaffProfile/StaffProfile";
 import {useNavigate, useParams} from "react-router-dom";
 import TableService from "../../service/TableService";
 import {Path} from "../../service/tools/StringConst";
+import DialogContext from "../../store/DialogContext";
 
 const AccountStaffPage = () => {
     let {pageNum} = useParams();
@@ -59,44 +58,62 @@ const AccountStaffPage = () => {
     },[totalPages]);
 
 
-    return (
-        <BackgroundWhite className={Css.accountStaffPage}>
-            <div className={Css.header}>
-                <div className={Css.search}>
-                    <select ref={selectField} className={Css.select}>
-                        <option value="staffId" >员工编号</option>
-                        <option value="name">姓名</option>
-                        <option value="email">邮箱</option>
-                        <option value="phone">手机</option>
-                        <option value="post">岗位</option>
-                    </select>
-                    <SearchWithButton searchInputProp={searchInputProp}
-                                      inputCss={Css.inputCss}
-                                      onClick={() => {
-                                          navigate(Path.ROOT + Path.ACCOUNT_STAFF + "/1");
-                                          searchBtn(inputValue, selectField.current)
-                                      }}/>
-                </div>
-                <div className={Css.addBtn}>
-                    <Button btnName={"新增"} onClickHandler={addBtn} />
-                </div>
-            </div>
-            <div className={Css.table}>
-                <Table
-                    setShowStaffProfile={setShowStaffProfile}
-                    staffListState={staffListState}
-                    pageNum={pageNum}
-                    pageSize={pageSize}
-                    totalPagesState={totalPagesState}
-                    paginationState={paginationState}
-                    setUpdateList={setUpdateList}
 
-                    showStaffProfileState={showStaffProfileState}
-                    isUpdate={isUpdate}
-                    setUpdate={setUpdate}
-                />
-            </div>
-        </BackgroundWhite>
+    const dialog = {
+        title: "删除对话框",
+        description: "确认删除吗？该操作不可逆！",
+        cancelName: "取消",
+        confirmName: "确认",
+        cancel: (setShowDialog) => {
+            setShowDialog(false);
+        },
+        confirm: (setShowDialog, emailByDialog) => {
+            AccountStaffPageService.deleteHandler(emailByDialog);
+            setShowDialog(false);
+            setUpdateList(true);
+        }
+    }
+
+    return (
+        <DialogContext.Provider value={dialog}>
+            <BackgroundWhite className={Css.accountStaffPage}>
+                <div className={Css.header}>
+                    <div className={Css.search}>
+                        <select ref={selectField} className={Css.select}>
+                            <option value="staffId" >员工编号</option>
+                            <option value="name">姓名</option>
+                            <option value="email">邮箱</option>
+                            <option value="phone">手机</option>
+                            <option value="post">岗位</option>
+                        </select>
+                        <SearchWithButton searchInputProp={searchInputProp}
+                                          inputCss={Css.inputCss}
+                                          onClick={() => {
+                                              navigate(Path.ROOT + Path.ACCOUNT_STAFF + "/1");
+                                              searchBtn(inputValue, selectField.current)
+                                          }}/>
+                    </div>
+                    <div className={Css.addBtn}>
+                        <Button btnName={"新增"} onClickHandler={addBtn} />
+                    </div>
+                </div>
+                <div className={Css.table}>
+                    <Table
+                        setShowStaffProfile={setShowStaffProfile}
+                        staffListState={staffListState}
+                        pageNum={pageNum}
+                        pageSize={pageSize}
+                        totalPagesState={totalPagesState}
+                        paginationState={paginationState}
+                        setUpdateList={setUpdateList}
+
+                        showStaffProfileState={showStaffProfileState}
+                        isUpdate={isUpdate}
+                        setUpdate={setUpdate}
+                    />
+                </div>
+            </BackgroundWhite>
+        </DialogContext.Provider>
     );
 };
 
