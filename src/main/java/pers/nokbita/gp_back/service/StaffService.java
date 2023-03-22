@@ -595,4 +595,40 @@ public class StaffService {
     }
 
 
+    @Transactional
+    public Result deleteStaff(String staffEmail) {
+        Result result = new Result();
+
+        QueryWrapper<StaffSign> staffSignQueryWrapper = new QueryWrapper<>();
+        staffSignQueryWrapper.eq("email", staffEmail);
+        StaffSign staffSign = staffSignMapper.selectOne(staffSignQueryWrapper);
+        String staffId = staffSign.getStaffId();
+
+        // 更新meta
+        Meta meta = metaMapper.selectOne(null);
+        meta.setStaffNum(meta.getStaffNum() - 1);
+        metaMapper.update(meta, null);
+
+        UpdateWrapper<StaffAccount> staffAccountUpdateWrapper = new UpdateWrapper<>();
+        UpdateWrapper<StaffContact> staffContactUpdateWrapper = new UpdateWrapper<>();
+        UpdateWrapper<StaffInfo> staffInfoUpdateWrapper = new UpdateWrapper<>();
+        UpdateWrapper<StaffSign> staffSignUpdateWrapper = new UpdateWrapper<>();
+        UpdateWrapper<StaffWork> staffWorkUpdateWrapper = new UpdateWrapper<>();
+
+        staffAccountUpdateWrapper.eq("staff_id", staffId);
+        staffWorkUpdateWrapper.eq("staff_id", staffId);
+        staffInfoUpdateWrapper.eq("staff_id", staffId);
+        staffContactUpdateWrapper.eq("staff_id", staffId);
+        staffSignUpdateWrapper.eq("staff_id", staffId);
+
+        int i = staffAccountMapper.delete(staffAccountUpdateWrapper);
+        int i1 = staffContactMapper.delete(staffContactUpdateWrapper);
+        int i2 = staffInfoMapper.delete(staffInfoUpdateWrapper);
+        int i3 = staffSignMapper.delete(staffSignUpdateWrapper);
+        int i5 = staffWorkMapper.delete(staffWorkUpdateWrapper);
+
+        result.succeed().message("删除成功");
+
+        return result;
+    }
 }

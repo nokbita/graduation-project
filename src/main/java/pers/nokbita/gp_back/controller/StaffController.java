@@ -84,4 +84,9 @@ public class StaffController {
         return staffService.getStaffList(pagination);
     }
 
+    @PostMapping("/delete")
+    public Result deleteStaff(@RequestBody HashMap<String,String> staffEmail) {
+        return staffService.deleteStaff(staffEmail.get("staffEmail"));
+    }
+
 }
