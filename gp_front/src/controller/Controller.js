@@ -32,7 +32,7 @@ const Controller = {
         }
     },
     homePageNavigator(navigate) {
-        navigate(Path.ROOT, {replace: true});
+        navigate(Path.ROOT + Path.ACCOUNT_STAFF, {replace: true});
     }
 }
 

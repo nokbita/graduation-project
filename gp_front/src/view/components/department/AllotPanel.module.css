@@ -1,0 +1,52 @@
+table, tr, th, td {
+    border: 1px solid #bfbfbf;
+    border-collapse: collapse;
+}
+
+th, td {
+    min-width: 80px;
+}
+
+
+
+.operate:hover {
+    color: #169BD5;
+    cursor: pointer;
+}
+
+tr {
+    cursor: pointer;
+}
+
+tr:hover {
+    background-color: #efefef;
+}
+thead > tr:hover {
+    background-color: #fff;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+table {
+    margin-bottom: 10px;
+}
+
+.AllotPanel {
+    width: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+}
+
+/*tr:nth-child(odd){background:#F4F4F4;}*/
+/*tr:nth-child(even){background:#C00;}*/

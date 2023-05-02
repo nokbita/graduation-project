@@ -8,27 +8,6 @@ import StaffProfile from "../StaffProfile/StaffProfile";
 import Dialog from "../UI/Dialog";
 import DialogContext from "../../../store/DialogContext";
 
-const TABLE_DATA = {
-    tbody: [
-        {
-            staffId: "a0001",
-            name: "Tom",
-            post: "Java 开发",
-            department: "研发部",
-            phone: "12345678912",
-            email: "123@qq.com"
-        },
-        {
-            staffId: "a0002",
-            name: "Tom",
-            post: "Java 开发",
-            department: "研发部",
-            phone: "12345678912",
-            email: "123@qq.com"
-        }
-    ]
-};
-
 const Table = (props) => {
 
     const pageNum = props.pageNum;
@@ -53,7 +32,7 @@ const Table = (props) => {
     const [emailByDialog, setEmailByDialog] = useState("");
     const deleteHandler = TableService.deleteHandler(setShowDialog, setEmailByDialog);
     const dialogContext = useContext(DialogContext);
-    console.log(dialogContext)
+
 
     return (
         <div className={Css.background}>
@@ -168,6 +147,27 @@ const Table = (props) => {
         </div>
     </div>
     );
+};
+
+const TABLE_DATA = {
+    tbody: [
+        {
+            staffId: "a0001",
+            name: "Tom",
+            post: "Java 开发",
+            department: "研发部",
+            phone: "12345678912",
+            email: "123@qq.com"
+        },
+        {
+            staffId: "a0002",
+            name: "Tom",
+            post: "Java 开发",
+            department: "研发部",
+            phone: "12345678912",
+            email: "123@qq.com"
+        }
+    ]
 };
 
 Table.defaultProps = {

@@ -1,0 +1,106 @@
+
+.background {
+    /*padding: 20px;*/
+    /*width: 1042px;*/
+}
+
+.tableBox {
+    /*padding-right: 20px;*/
+}
+
+.addBtn {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: right;
+}
+
+
+.table {
+    border: 1px solid #dfdfdf;
+    width: 1002px;
+    /*border-radius: 5px;*/
+    /*overflow: auto;*/
+}
+
+
+.header {
+
+}
+
+.body {
+
+}
+
+.row {
+    cursor: default;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 38px;
+}
+
+.table .row {
+    width: 1000px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.body .row:nth-last-child(1) {
+    border: none;
+}
+
+.table .row:hover {
+    background-color: #efefef;
+}
+
+.header > .row:hover {
+    background-color: #fff;
+}
+
+.table li {
+    border-left: 1px solid #dfdfdf;
+}
+.table li:nth-child(1) {
+    border: none;
+}
+
+.serial {
+    min-width: 60px;
+}
+
+.dptId,
+.name,
+.department {
+    min-width: 100px;
+}
+
+.description{
+    min-width: 160px;
+}
+
+
+
+.header li {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+.body li {
+    text-align: center;
+    font-size: 16px;
+}
+
+.operate {
+    min-width: 120px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.delete {
+    margin-right: 10px;
+}
+
+.delete:hover {
+    color: #169BD5;
+}

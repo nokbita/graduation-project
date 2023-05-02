@@ -1,5 +1,4 @@
 import React from 'react';
-import FrontRequest from "../request/FrontRequest";
 import StringConst, {Log} from "./StringConst";
 
 const Tools = {
@@ -24,9 +23,6 @@ const Tools = {
         blob.name = fileName;                // 文件名
         return new File([blob], fileName, {type: blob.type, lastModified: Date.now()});
     },
-
-
-
 
     /**
      * 成功日志

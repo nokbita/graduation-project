@@ -2,12 +2,9 @@
 
 const MainNavigationRequest = {
     toStaff: (navigate) => {
-        navigate("/account/staff");
+        navigate("/account/staff/1");
     },
 
-    toUser: (navigate) => {
-        // navigate("/account/user");
-    }
 
 }
 

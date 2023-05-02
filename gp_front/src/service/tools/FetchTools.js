@@ -59,8 +59,6 @@ const FetchTools = {
             return null;
         }
     }
-
-
 }
 
 export default FetchTools;

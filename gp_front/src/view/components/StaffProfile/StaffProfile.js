@@ -33,6 +33,8 @@ const StaffProfile = (props) => {
     const qqState = useState("");
     const contactInfoProps = StaffProfileService.contactInfoProps(nativePlaceState, addressState, phoneState, emailState, wechatState, qqState);
 
+    console.log("会执行吗？.......")
+
     const photoState = useState();
     const [photo, setPhoto] = photoState;
 
@@ -59,8 +61,14 @@ const StaffProfile = (props) => {
                 nativePlaceState, addressState, phoneState, emailState, wechatState, qqState, photoState);
             return;
         }
-        if (props.staffEmail) {
+        if (props.isUpdate && props.staffEmail) {
             StaffProfileService.getProfileHandlerByStaffEmail(props.staffEmail, staffIdState, postState, departmentState, supervisorState,
+                nameState, sexState, birthDateState, identifyNumState, educationState,
+                nativePlaceState, addressState, phoneState, emailState, wechatState, qqState, photoState);
+            return;
+        }
+        if (!props.isUpdate) {
+            StaffProfileService.clean(props.staffEmail, staffIdState, postState, departmentState, supervisorState,
                 nameState, sexState, birthDateState, identifyNumState, educationState,
                 nativePlaceState, addressState, phoneState, emailState, wechatState, qqState, photoState);
         }

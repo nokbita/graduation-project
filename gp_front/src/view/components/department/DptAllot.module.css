@@ -1,0 +1,127 @@
+.staffProfile {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.background {
+    /*padding: 20px;*/
+    /*width: 1042px;*/
+}
+
+.tableBox {
+    /*padding-right: 20px;*/
+}
+
+.table {
+    border: 1px solid #dfdfdf;
+    width: 1002px;
+    /*border-radius: 5px;*/
+    /*overflow: auto;*/
+}
+
+
+.pagination {
+    width: 1002px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.paginationBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.header {
+
+}
+
+.body {
+
+}
+
+.row {
+    cursor: default;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 38px;
+}
+
+.table .row {
+    width: 1000px;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.body .row:nth-last-child(1) {
+    border: none;
+}
+
+.table .row:hover {
+    background-color: #efefef;
+}
+
+.header > .row:hover {
+    background-color: #fff;
+}
+
+.table li {
+    border-left: 1px solid #dfdfdf;
+}
+.table li:nth-child(1) {
+    border: none;
+}
+
+.serial {
+    min-width: 60px;
+}
+
+.staffId,
+.name,
+.department {
+    min-width: 100px;
+}
+
+.post{
+    min-width: 160px;
+}
+
+.phone,
+.email {
+    min-width: 180px;
+}
+
+.header li {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+.body li {
+    text-align: center;
+    font-size: 16px;
+}
+
+.operate {
+    min-width: 120px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.allot {
+    text-align: center;
+    text-decoration: underline;
+}
+.allot {
+    margin-left: 10px;
+}
+
+
+.allot:hover {
+    color: #169BD5;
+}
+

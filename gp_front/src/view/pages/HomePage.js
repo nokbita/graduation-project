@@ -5,10 +5,6 @@ import GpContent from "../components/GpContent/GpContent";
 import Footer from "../components/Footer/Footer";
 import Css from "./HomePage.module.css";
 
-
-
-
-
 const HomePage = () => {
 
     return (
@@ -21,19 +17,6 @@ const HomePage = () => {
                         <MainNavigation />
                     </div>
                     <div className={Css.right}>
-                        {/*<div className={Css.BreadcrumbNav}>*/}
-                        {/*    <span>脚印：</span>*/}
-                        {/*    /!*{*!/*/}
-                        {/*    /!*    breadcrumbContext.breadcrumbs.map((breadcrumb, index) => (*!/*/}
-                        {/*    /!*        <Breadcrumb*!/*/}
-                        {/*    /!*            key={index}*!/*/}
-                        {/*    /!*            linkName={breadcrumb.linkName}*!/*/}
-                        {/*    /!*            onClickHandler={breadcrumb.onClickHandler}*!/*/}
-                        {/*    /!*            className={breadcrumb.isLast ? Css.currentBreadcrumb : null}*!/*/}
-                        {/*    /!*        />*!/*/}
-                        {/*    /!*    ))*!/*/}
-                        {/*    /!*}*!/*/}
-                        {/*</div>*/}
                         <div className={Css.gpContent}>
                             <GpContent />
                         </div>

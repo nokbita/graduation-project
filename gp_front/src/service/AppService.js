@@ -25,9 +25,6 @@ const AppService = {
                 if (result) {
                     // 已登录
                     AppController.homePageNavigator(navigate);
-                } else {
-                    // 未登录
-                    AppController.signInPageNavigator(navigate);
                 }
             });
         }

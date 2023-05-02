@@ -7,11 +7,16 @@ import MainNavigationService from "../../../service/MainNavigationService";
 const MainNavigation = () => {
     const navigate = useNavigate();
 
-    const blockNavProps = MainNavigationService.blockNavProps(navigate);
+    const staffMgt = MainNavigationService.staffMgt(navigate);
+    const departmentMgt = MainNavigationService.departmentMgt(navigate);
+    const roleMgt = MainNavigationService.roleMgt(navigate);
+    const clockingInMgt = MainNavigationService.clockingInMgt(navigate);
     return (
         <div className={Css.mainNavigation}>
-           <BlockNav blockNavProps={blockNavProps} />
-           {/*<BlockNav  />*/}
+            <BlockNav blockNavProps={staffMgt} />
+            <BlockNav blockNavProps={departmentMgt} />
+            <BlockNav blockNavProps={roleMgt} />
+            <BlockNav blockNavProps={clockingInMgt} />
         </div>
     );
 };

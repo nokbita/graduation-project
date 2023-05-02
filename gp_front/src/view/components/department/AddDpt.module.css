@@ -1,0 +1,23 @@
+
+
+.addDpt {
+    width: 500px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+}
+
+
+.btnBox {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+}

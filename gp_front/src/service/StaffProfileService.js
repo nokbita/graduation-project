@@ -468,6 +468,43 @@ const StaffProfileService = {
                     Tools.printFailedLog(result);
             });
         };
+    },
+    clean(staffEmail, staffIdState, postState, departmentState, supervisorState, nameState, sexState, birthDateState,
+          identifyNumState, educationState, nativePlaceState, addressState, phoneState, emailState, wechatState, qqState,
+          photoState) {
+        const [staffId, setStaffId] = staffIdState;
+        const [post, setPost] = postState;
+        const [department, setDepartment] = departmentState;
+        const [supervisor, setSupervisor] = supervisorState;
+        const [name, setName] = nameState;
+        const [sex, setSex] = sexState;
+        const [birthDate, setBirthdate] = birthDateState;
+        const [identifyNum, setIdentifyNum] = identifyNumState;
+        const [education, setEducation] = educationState;
+        const [nativePlace, setNativePlace] = nativePlaceState;
+        const [address, setAddress] = addressState;
+        const [phone, setPhone] = phoneState;
+        const [email, setEmail] = emailState;
+        const [wechat, setWechat] = wechatState;
+        const [qq, setQQ] = qqState;
+        const [photo, setPhoto] = photoState;
+
+        setStaffId("");
+        setPost("");
+        setDepartment("");
+        setSupervisor("");
+        setName("");
+        setSex("");
+        setBirthdate("");
+        setIdentifyNum("");
+        setEducation("");
+        setNativePlace("");
+        setAddress("");
+        setPhone("");
+        setEmail("");
+        setWechat("");
+        setQQ("");
+        setPhoto("");
     }
 }
 
