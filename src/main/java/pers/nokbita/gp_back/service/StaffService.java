@@ -20,10 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class StaffService {
@@ -145,6 +142,7 @@ public class StaffService {
         if (staffInfos.size() == 0 || staffInfos.get(0) == null) {
             return result.failed().message("关键词与值不匹配");
         }
+        System.out.println( "staffInfos尺寸-------------》" + staffInfos.size());
         // 封装
         for (int i = 0; i < staffInfos.size(); i++) {
             StaffInfo staffInfo = staffInfos.get(i);
@@ -152,6 +150,7 @@ public class StaffService {
             StaffContact staffContact = staffContacts.get(i);
             if (staffInfo.getStaffId().equals(staffWork.getStaffId())
                     && staffWork.getStaffId().equals(staffContact.getStaffId())) {
+                System.out.println("判断————————————");
                 StaffListOV staffListOV = new StaffListOV();
                 staffListOV.setStaffId(staffInfo.getStaffId());
                 staffListOV.setName(staffInfo.getName());
@@ -331,7 +330,22 @@ public class StaffService {
     public Result checkSignStatus(String token) {
         Result result = new Result<>();
         if (!this.isSignedIn(token)) return result.failed().message("登录状态失效，请重新登陆");
-        return result.succeed().message("登录状态有效");
+
+        String level = this.checkStaffLevel(token);
+
+        return result.succeed().message("登录状态有效").data("level", level);
+    }
+
+    private String checkStaffLevel(String token) {
+        Claims payload = TokenUtil.getClaimsByToken(token);
+        String email = payload.getSubject();
+
+        StaffSign staffSignByEmail = this.findStaffSignByEmail(email);
+        QueryWrapper<StaffAccount> staffAccountQueryWrapper = new QueryWrapper<>();
+        staffAccountQueryWrapper.eq("staff_id", staffSignByEmail.getStaffId());
+        StaffAccount staffAccount = staffAccountMapper.selectOne(staffAccountQueryWrapper);
+
+        return staffAccount.getLevel();
     }
 
     /**
@@ -368,12 +382,12 @@ public class StaffService {
         StaffSign staffSign = this.findStaffSignByEmail(staffEmail);
         StaffWork staffWork = this.findStaffWorkByStaffId(staffSign.getStaffId());
         StaffInfo staffInfo = this.findStaffInfoByStaffId(staffSign.getStaffId());
-        StaffContact staffContactByEmail = this.findStaffContactByStaffId(staffSign.getStaffId());
+        StaffContact staffContact = this.findStaffContactByStaffId(staffSign.getStaffId());
         // 封装
         HashMap<String, Object> map = new HashMap<>();
         map.put(StringConst.STAFF_WORK, staffWork);
         map.put(StringConst.STAFF_INFO, staffInfo);
-        map.put(StringConst.STAFF_CONTACT, staffContactByEmail);
+        map.put(StringConst.STAFF_CONTACT, staffContact);
 
         return result.succeed().message("staffProfile 获取成功").data(StringConst.STAFF, map);
     }
@@ -411,9 +425,17 @@ public class StaffService {
         Claims payload = TokenUtil.getClaimsByToken(token);
         String email = payload.getSubject();
 
-        StaffSign staffSignByEmail = this.findStaffSignByEmail(email);
-        staffSignByEmail.setPassword("");
-        return result.succeed().message("获取StaffSign成功").data(StringConst.STAFF_SIGN, staffSignByEmail);
+        if (email == null) return null;
+        QueryWrapper<StaffSign> wrapper = new QueryWrapper<>();
+        wrapper.eq("email", email);
+        StaffSign staffSign = staffSignMapper.selectOne(wrapper);
+        staffSign.setPassword("");
+
+        QueryWrapper<StaffAccount> staffAccountQueryWrapper = new QueryWrapper<>();
+        staffAccountQueryWrapper.eq("staff_id", staffSign.getStaffId());
+        StaffAccount staffAccount = staffAccountMapper.selectOne(staffAccountQueryWrapper);
+
+        return result.succeed().message("获取StaffSign成功").data(StringConst.STAFF_SIGN, staffSign).data("level", staffAccount.getLevel());
     }
 
     @Transactional
@@ -429,8 +451,13 @@ public class StaffService {
         StaffSign staffSign = staff.getStaffSign();
         StaffAccount staffAccount = staff.getStaffAccount();
 
-        // 照片在数据库中只存储路径
         String staffId = staffAccount.getStaffId();
+        StaffSign staffSignById = findStaffSignById(staffId);
+        if (staffSign.getPassword() == null || staffSign.getPassword().trim().equals("")) {
+            staffSign.setPassword(staffSignById.getPassword());
+        }
+
+        // 照片在数据库中只存储路径
         if (staffInfo.getPhoto() != null && !staffInfo.getPhoto().contains("http")) {
             String photoPath = this.base64ToImg(staffInfo.getPhoto(), staffId, request);
             staffInfo.setPhoto(photoPath);
@@ -456,10 +483,10 @@ public class StaffService {
         staffContactMapper.update(staffContact, staffContactUpdateWrapper);
         staffSignMapper.update(staffSign, staffSignUpdateWrapper);
 
-        if (staffSign.getPassword() != null && !staffSign.getPassword().equals("")) {
-            result.succeed().message("更新成功").details("isPasswordChanged", true);
-        } else {
+        if (Objects.equals(staffSign.getPassword(), staffSignById.getPassword())) {
             result.succeed().message("更新成功").details("isPasswordChanged", false);
+        } else {
+            result.succeed().message("更新成功").details("isPasswordChanged", true);
         }
 
         return result;
@@ -628,6 +655,36 @@ public class StaffService {
         int i5 = staffWorkMapper.delete(staffWorkUpdateWrapper);
 
         result.succeed().message("删除成功");
+
+        return result;
+    }
+
+    public Result findAllStaff() {
+        Result result = new Result();
+        List<StaffListOV> listOVS = new ArrayList<>();
+
+        List<StaffInfo> staffInfos = staffInfoMapper.selectList(null);
+
+
+        for (StaffInfo staffInfo: staffInfos) {
+            QueryWrapper<StaffWork> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("staff_id", staffInfo.getStaffId());
+            StaffWork staffWork = staffWorkMapper.selectOne(queryWrapper);
+
+            QueryWrapper<StaffAccount> staffAccountQueryWrapper = new QueryWrapper<>();
+            staffAccountQueryWrapper.eq("staff_id", staffInfo.getStaffId());
+            StaffAccount staffAccount = staffAccountMapper.selectOne(staffAccountQueryWrapper);
+
+            StaffListOV staffListOV = new StaffListOV();
+            staffListOV.setStaffId(staffInfo.getStaffId());
+            staffListOV.setName(staffInfo.getName());
+            staffListOV.setPost(staffWork.getPost());
+            staffListOV.setDepartment(staffWork.getDepartment());
+            staffListOV.setLevel(staffAccount.getLevel());
+            listOVS.add(staffListOV);
+        }
+
+        result.succeed().message("已找到所有staff").data("staffs", listOVS);
 
         return result;
     }

@@ -7,6 +7,7 @@ public class StaffListOV {
     private String department;
     private String phone;
     private String email;
+    private String level;
 
     public String getStaffId() {
         return staffId;
@@ -56,6 +57,14 @@ public class StaffListOV {
         this.email = email;
     }
 
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
     @Override
     public String toString() {
         return "StaffListOV{" +
@@ -65,6 +74,7 @@ public class StaffListOV {
                 ", department='" + department + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", level='" + level + '\'' +
                 '}';
     }
 }

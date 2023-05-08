@@ -80,8 +80,12 @@ public class StaffController {
 
     @PostMapping("/list")
     public Result getStaffList(@RequestBody HashMap<String,String> pagination) {
-        System.out.println(pagination);
         return staffService.getStaffList(pagination);
+    }
+
+    @PostMapping("/allStaff")
+    public Result findAllStaff() {
+        return staffService.findAllStaff();
     }
 
     @PostMapping("/delete")

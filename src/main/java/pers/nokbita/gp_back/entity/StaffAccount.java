@@ -15,8 +15,17 @@ public class StaffAccount {
   private String regCode;
   private Date hireTime;
   private Date resignTime;
+  private String level;
   private String status;
   private Date updateAt;
+
+  public String getLevel() {
+    return level;
+  }
+
+  public void setLevel(String level) {
+    this.level = level;
+  }
 
   public Integer getId() {
     return id;
